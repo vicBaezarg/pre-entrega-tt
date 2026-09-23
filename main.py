@@ -39,7 +39,7 @@ while True:
         else:
             print(f"\n{'LISTA DE PRODUCTOS':*^30}")
             for i, producto in enumerate(PRODUCTOS):
-                print(f"({i+1}) Nombre: {PRODUCTOS[i][0]} // Categoría: {PRODUCTOS[i][1]} // Precio: ${PRODUCTOS[i][2]}.00")
+                print(f"({i+1}) Nombre: {producto[0]} // Categoría: {producto[1]} // Precio: ${producto[2]}.00")
         continue
 
     elif opcion == "3":
@@ -48,8 +48,12 @@ while True:
         else:
             print(f"\n{'LISTA DE PRODUCTOS':*^30}")
             for i, producto in enumerate(PRODUCTOS):
-                print(f"({i+1}) Nombre: {PRODUCTOS[i][0]} // Categoría: {PRODUCTOS[i][1]} //  Precio: ${PRODUCTOS[i][2]}.00")
-            eliminar = int(input("Ingrese el número del producto que desea eliminar: "))
+                print(f"({i+1}) Nombre: {producto[0]} // Categoría: {producto[1]} //  Precio: ${producto[2]}.00")
+            eliminar = input("Ingrese el número del producto que desea eliminar: ")
+            if not eliminar.isdigit():
+                print("Debe ingresar un número entero.")
+                continue
+            eliminar = int(eliminar)
             if eliminar < 1 or eliminar > len(PRODUCTOS):
                 print("Número de producto inválido.")
             else:
@@ -65,7 +69,7 @@ while True:
             encontrado = False
             for i, producto in enumerate(PRODUCTOS):
                 if producto[0].lower() == buscar.lower():
-                    print(f"Producto encontrado: Nombre: {PRODUCTOS[i][0]} // Categoría: {PRODUCTOS[i][1]} // Precio: ${PRODUCTOS[i][2]}.00")
+                    print(f"Producto encontrado: Nombre: {producto[0]} // Categoría: {producto[1]} // Precio: ${producto[2]}.00")
                     encontrado = True
                     break
             if not encontrado:
@@ -78,8 +82,12 @@ while True:
         else:
             print(f"\n{'LISTA DE PRODUCTOS':*^30}")
             for i, producto in enumerate(PRODUCTOS):
-                print(f"({i+1}) Nombre: {PRODUCTOS[i][0]} // Categoría: {PRODUCTOS[i][1]} // Precio: ${PRODUCTOS[i][2]}.00")
-            modificar = int(input("Ingrese el número del producto que desea modificar: "))
+                print(f"({i+1}) Nombre: {producto[0]} // Categoría: {producto[1]} // Precio: ${producto[2]}.00")
+            modificar = input("Ingrese el número del producto que desea modificar: ")
+            if not modificar.isdigit():
+                print("Debe ingresar un número entero.")
+                continue
+            modificar = int(modificar)
             if modificar < 1 or modificar > len(PRODUCTOS):
                 print("Número de producto inválido.")
             else:
@@ -116,6 +124,8 @@ while True:
                         break
                     else:
                         print("Opción inválida. Por favor, seleccione una opción válida.")
-    else:
+    elif opcion == "6":
         print("Saliendo del programa...")
         break
+    else:
+        print("Opción inválida. Por favor, seleccione una opción válida.")
