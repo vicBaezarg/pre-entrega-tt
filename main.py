@@ -10,12 +10,17 @@ while True:
     opcion = input("Seleccione una opción: ")
 
     if opcion == "1":
-        nombre = input("Ingrese el nombre del producto: ")
-        categoria = input("Ingrese la categoría del producto: ")
-        precio = float(input("Ingrese el precio del producto: "))
-        PRODUCTOS.append([nombre, categoria, precio])
-        print(f"Producto '{nombre}' agregado exitosamente.")
-        continue
+        while True:
+                nombre = input("Ingrese el nombre del producto: ")
+                categoria = input("Ingrese la categoría del producto: ")
+                precio = float(input("Ingrese el precio del producto: "))
+                PRODUCTOS.append([nombre, categoria, precio])
+                print(f"Producto '{nombre}' agregado exitosamente.")
+                pregunta = input("¿Desea agregar otro producto? (s/n): ")
+                if pregunta.lower() != "s":
+                    continue
+                else:
+                    break
 
     elif opcion == "2":
         if len(PRODUCTOS) == 0:
