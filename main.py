@@ -11,16 +11,26 @@ while True:
 
     if opcion == "1":
         while True:
-                nombre = input("Ingrese el nombre del producto: ")
-                categoria = input("Ingrese la categoría del producto: ")
-                precio = float(input("Ingrese el precio del producto: "))
-                PRODUCTOS.append([nombre, categoria, precio])
-                print(f"Producto '{nombre}' agregado exitosamente.")
-                pregunta = input("¿Desea agregar otro producto? (s/n): ")
-                if pregunta.lower() != "s":
-                    continue
-                else:
-                    break
+            nombre = input("Ingrese el nombre del producto: ")
+            if not nombre:
+                print("El nombre del producto no puede estar vacío.")
+                continue
+            categoria = input("Ingrese la categoría del producto: ")
+            if not categoria:
+                print("La categoría del producto no puede estar vacía.")
+                continue
+            precio = input("Ingrese el precio del producto: ")
+            if not precio.isdigit():
+                print("El precio del producto debe ser un número entero.")
+                continue
+            precio = int(precio)
+            PRODUCTOS.append([nombre, categoria, precio])
+            print(f"Producto '{nombre}' agregado exitosamente.")
+            pregunta = input("¿Desea agregar otro producto? (s/n): ")
+            if pregunta.lower() == "s":
+                continue
+            else:
+                break
 
     elif opcion == "2":
         if len(PRODUCTOS) == 0:
@@ -28,7 +38,7 @@ while True:
         else:
             print(f"\n{'LISTA DE PRODUCTOS':*^30}")
             for i, producto in enumerate(PRODUCTOS):
-                print(f"({i+1}) Nombre: {PRODUCTOS[i][0]} // Categoría: {PRODUCTOS[i][1]} //Precio: ${PRODUCTOS[i][2]:.2f}")
+                print(f"({i+1}) Nombre: {PRODUCTOS[i][0]} // Categoría: {PRODUCTOS[i][1]} //Precio: ${PRODUCTOS[i][2]}.00")
         continue
 
     elif opcion == "3":
@@ -37,7 +47,7 @@ while True:
         else:
             print(f"\n{'LISTA DE PRODUCTOS':*^30}")
             for i, producto in enumerate(PRODUCTOS):
-                print(f"({i+1}) Nombre: {PRODUCTOS[i][0]} // Categoría: {PRODUCTOS[i][1]} //Precio: ${PRODUCTOS[i][2]:.2f}")
+                print(f"({i+1}) Nombre: {PRODUCTOS[i][0]} // Categoría: {PRODUCTOS[i][1]} //Precio: ${PRODUCTOS[i][2]}.00")
             eliminar = int(input("Ingrese el número del producto que desea eliminar: "))
             if eliminar < 1 or eliminar > len(PRODUCTOS):
                 print("Número de producto inválido.")
@@ -54,7 +64,7 @@ while True:
             encontrado = False
             for i, producto in enumerate(PRODUCTOS):
                 if producto[0].lower() == buscar.lower():
-                    print(f"Producto encontrado: Nombre: {PRODUCTOS[i][0]} // Categoría: {PRODUCTOS[i][1]} //Precio: ${PRODUCTOS[i][2]:.2f}")
+                    print(f"Producto encontrado: Nombre: {PRODUCTOS[i][0]} // Categoría: {PRODUCTOS[i][1]} //Precio: ${PRODUCTOS[i][2]}.00")
                     encontrado = True
                     break
             if not encontrado:
